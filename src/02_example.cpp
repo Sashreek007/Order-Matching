@@ -25,6 +25,7 @@ public:
   int32_t stop_price() const { return stop_price_; } // Returns stored value
   bool all_or_none() const { return all_or_none_; }
   bool immediate_or_cancel() const { return immediate_or_cancel_; }
+
   std::string getOrderType() const {
     std::string type = "";
 
@@ -55,9 +56,9 @@ private:
   bool is_buy_;
   uint32_t quantity_;
   int32_t price_;
-  int32_t stop_price_;       // NEW: Store stop price
-  bool all_or_none_;         // NEW: Store AON flag
-  bool immediate_or_cancel_; // NEW: Store IOC flag};
+  int32_t stop_price_;       
+  bool all_or_none_;         
+  bool immediate_or_cancel_; 
 };
 int main() {
 
