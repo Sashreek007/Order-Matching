@@ -24,7 +24,7 @@ make
 
 ### 4. Run
 ```bash
-./order
+./[executable name]
 ```
 
 ## Structure
