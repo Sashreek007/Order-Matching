@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "03_example"
+			"path" : "04_example"
 		}
 	],
 	"backtrace" : 1,
@@ -77,13 +77,13 @@
 			]
 		}
 	],
-	"id" : "03_example::@6890427a1f51a3e7e1df",
+	"id" : "04_example::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"language" : "CXX"
 	},
-	"name" : "03_example",
-	"nameOnDisk" : "03_example",
+	"name" : "04_example",
+	"nameOnDisk" : "04_example",
 	"paths" : 
 	{
 		"build" : ".",
@@ -104,7 +104,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/03_example.cpp",
+			"path" : "src/04_example.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
