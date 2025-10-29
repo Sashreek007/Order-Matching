@@ -1,11 +1,32 @@
+//This files uses liquibook 
 #include <book/order_book.h>
 #include <cstdint>
 #include <iostream>
 #include <string>
-
+/*
+BUSINESS TERMS 
+- Order Book: the live queue of buy (bids) and sell (asks) orders waiting to match.
+- Limit Order: buy/sell at a specified price or better. May wait in the book.
+- Market Order: execute immediately at best available prices (no price limit).
+- Stop Price: trigger level that activates a stop/stop-limit order.
+- Stop-Loss (Stop or Stop-Limit): becomes active when price hits stop; often used to cap losses.
+- Quantity (order_qty): number of shares/contracts in the order.
+- Price (ticks/cents): integer price (e.g., 5000 == $50.00) to avoid float errors.
+- AON (All-Or-None): fill the whole order or don’t fill any part.
+- IOC (Immediate-Or-Cancel): fill what you can right now; cancel the rest.
+- FOK (Fill-Or-Kill): AON + IOC → fill entire order immediately or cancel entirely.
+*/
 class SimpleOrder {
 public:
-  // Constructor with ALL order properties
+  /**
+   * @param is_buy  true = buy (bid), false = sell (ask)
+   * @param qty     total quantity (shares/contracts)
+   * @param price   limit price in ticks (0 => market order)
+   * @param id      client/order identifier
+   * @param stop_price  (>0) activates stop behavior; 0 = none
+   * @param all_or_none  require full fill or cancel
+   * @param immediate_or_cancel execute immediately; cancel unfilled
+   */
   SimpleOrder(bool is_buy, uint32_t qty, int32_t price, std::string id,
               int32_t stop_price = 0, // Optional parameters
               bool all_or_none = false, bool immediate_or_cancel = false)
@@ -16,14 +37,20 @@ public:
     std::cout << "Created" << getOrderType() << "order:" << order_id_
               << std::endl;
   }
-
+  /// @return true if buy, false if sell
   // Required interface - now returns actual values
   bool is_buy() const { return is_buy_; }
+  /// @return total order quantity
   uint32_t order_qty() const { return quantity_; }
+  /// @return price in ticks (0 => market)
   int32_t price() const { return price_; }
+  /// @return instrument symbol
   const std::string &symbol() const { return symbol_; }
-  int32_t stop_price() const { return stop_price_; } // Returns stored value
+  /// @return stop trigger price (0 if disabled)
+  int32_t stop_price() const { return stop_price_; } 
+  /// @return AON flag
   bool all_or_none() const { return all_or_none_; }
+  /// @return IOC flag
   bool immediate_or_cancel() const { return immediate_or_cancel_; }
 
   std::string getOrderType() const {
